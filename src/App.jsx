@@ -5,6 +5,8 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  const testFunction =()=>{console.log('Hello')}
+
   return (
     <div className="App">
       <h1 className="text-3xl font-bold underline">
