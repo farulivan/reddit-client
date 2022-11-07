@@ -1,19 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import Sidebar from './features/Sidebar/Sidebar';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const testFunction =()=>{console.log('Hello')}
+  const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
-  )
+    <>
+      <Sidebar />
+    </>
+  );
 }
 
-export default App
+export default App;
