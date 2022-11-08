@@ -1,9 +1,9 @@
 import redditIcon from '../../assets/redditIcon.svg';
-import Subreddits from '../subreddits/subReddits';
+import { SubReddits } from '../Subreddits/SubReddits';
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
-    <aside className="flex flex-col bg-slate-500 p-7 h-screen max-w-xs">
+    <aside className="flex flex-col p-7 h-screen">
       <div id="logo" className="flex">
         <img src={redditIcon} alt="Reddit Icon" className="w-10 mr-2" />
         <p className="text-xl font-bold">
@@ -19,9 +19,7 @@ const Sidebar = () => {
         />
         <button type="submit" aria-label="Search"></button>
       </form> */}
-      <Subreddits />
+      <SubReddits />
     </aside>
   );
 };
-
-export default Sidebar;
