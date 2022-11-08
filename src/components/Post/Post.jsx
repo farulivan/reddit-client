@@ -1,5 +1,6 @@
 import React from 'react';
 import { NoImage } from '../../assets/noimage';
+import { truncateString } from '../../utils/helperFunctions';
 
 export const Post = (props) => {
   const post = props.post.data;
@@ -7,11 +8,11 @@ export const Post = (props) => {
     <article key={post.id}>
       <div className="flex mb-10">
         <div className="flex">
-          <div className="max-w-[5rem] max-h-[5rem] overflow-hidden">
+          <div className="w-[5rem] h-[5rem] overflow-hidden">
             <img src={post.url} alt="" className="object-cover" />
           </div>
           <div className="ml-4">
-            <h3 className="font-bold">{post.title}</h3>
+            <h3 className="font-bold">{truncateString(post.title, 70)}</h3>
             <div className="post-details">
               <span className="author-details">
                 {/* <Avatar name={post.author} /> */}
@@ -33,34 +34,6 @@ export const Post = (props) => {
               </span>
             </div>
           </div>
-
-          <div className="post-votes-container">
-            {/* <button
-            type="button"
-            className={`icon-action-button up-vote ${
-              voteValue === 1 && 'active'
-            }`}
-            onClick={() => onHandleVote(1)}
-            aria-label="Up vote"
-          >
-            {renderUpVote()}
-          </button> */}
-            {/* <p className={`post-votes-value ${getVoteType()}`}>
-            {shortenNumber(post.ups, 1)}
-          </p>
-          <button
-            type="button"
-            className={`icon-action-button down-vote ${
-              voteValue === -1 && 'active'
-            }`}
-            onClick={() => onHandleVote(-1)}
-            aria-label="Down vote"
-          >
-            {renderDownVote()}
-          </button> */}
-          </div>
-
-          {/* {renderComments()} */}
         </div>
       </div>
     </article>
