@@ -3,8 +3,7 @@ import { mockup } from '../../mockup';
 import axios from 'axios';
 
 const initialState = {
-  fetchPosts: [],
-  // posts: mockup,
+  posts: [],
   isLoading: false,
   searchTerm: '',
   selectedSubreddit: '/r/popular',
@@ -45,7 +44,7 @@ const redditSlice = createSlice({
       })
       .addCase(getPosts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.fetchPosts = action.payload;
+        state.posts = action.payload;
       })
       .addCase(getPosts.rejected, (state) => {
         state.isLoading = false;

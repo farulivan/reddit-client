@@ -7,13 +7,12 @@ import { getPosts, setSelectedSubreddit } from './features/Reddit/redditSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const { fetchPosts, isLoading, selectedSubreddit } = useSelector(
+  const { posts, isLoading, selectedSubreddit } = useSelector(
     (store) => store.reddit
   );
 
   useEffect(() => {
     dispatch(getPosts(selectedSubreddit));
-    // console.log(set)
   }, [selectedSubreddit]);
 
   return (
@@ -24,7 +23,7 @@ function App() {
       <div className="w-4/5 bg-zinc-100">
         <Header />
         <main className="m-10 p-7 bg-white rounded-lg z-10 shadow-xl">
-          <Home fetchPosts={fetchPosts} isLoading={isLoading} />
+          <Home posts={posts} isLoading={isLoading} />
         </main>
       </div>
     </div>
