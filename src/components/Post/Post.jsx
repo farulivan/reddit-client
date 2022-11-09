@@ -4,12 +4,14 @@ import {
   EllipsisVert,
   ChevronUp,
   ChevronDown,
+  Comments,
 } from '../../assets/icons';
 import { truncateString, shortenNumber } from '../../utils/helperFunctions';
 import moment from 'moment/moment';
 
 export const Post = (props) => {
   const post = props.post;
+  // console.log(post.)
   return (
     <article key={post.id} className="w-full flex">
       <div className="mb-10 w-full flex justify-between items-center">
@@ -30,6 +32,12 @@ export const Post = (props) => {
                 <span className="text-orange-600 font-bold text-sm">
                   {` ${post.author}`}
                 </span>
+              </span>
+            </div>
+            <div className="flex text-zinc-400 items-center text-sm">
+              <Comments />
+              <span className="ml-1">
+                {shortenNumber(post.num_comments, 1)} comments
               </span>
             </div>
           </div>
