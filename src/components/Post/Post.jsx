@@ -9,7 +9,7 @@ import { truncateString, shortenNumber } from '../../utils/helperFunctions';
 import moment from 'moment/moment';
 
 export const Post = (props) => {
-  const post = props.post.data;
+  const post = props.post;
   return (
     <article key={post.id} className="w-full flex">
       <div className="mb-10 w-full flex justify-between items-center">
