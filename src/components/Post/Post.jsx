@@ -1,38 +1,49 @@
 import React from 'react';
-import { NoImage } from '../../assets/noimage';
-import { truncateString } from '../../utils/helperFunctions';
+import {
+  NoImage,
+  EllipsisVert,
+  ChevronUp,
+  ChevronDown,
+} from '../../assets/icons';
+import { truncateString, shortenNumber } from '../../utils/helperFunctions';
+import moment from 'moment/moment';
 
 export const Post = (props) => {
   const post = props.post.data;
   return (
-    <article key={post.id}>
-      <div className="flex mb-10">
-        <div className="flex">
-          <div className="w-[5rem] h-[5rem] overflow-hidden">
+    <article key={post.id} className="w-full flex">
+      <div className="mb-10 w-full flex justify-between items-center">
+        <div className="flex items-center">
+          <div className="w-28 h-16 overflow-hidden rounded-md">
             <img src={post.url} alt="" className="object-cover" />
           </div>
           <div className="ml-4">
-            <h3 className="font-bold">{truncateString(post.title, 70)}</h3>
+            <h3 className="font-bold text-zinc-700">
+              {truncateString(post.title, 70)}
+            </h3>
             <div className="post-details">
+              <span className="text-zinc-400 text-sm">
+                submitted {moment.unix(post.created_utc).fromNow()} by
+              </span>
               <span className="author-details">
                 {/* <Avatar name={post.author} /> */}
-                <span className="author-username">{post.author}</span>
-              </span>
-              {/* <span>{moment.unix(post.created_utc).fromNow()}</span> */}
-              <span className="post-comments-container">
-                <button
-                  type="button"
-                  className={`icon-action-button ${
-                    post.showingComments && 'showing-comments'
-                  }`}
-                  // onClick={() => onToggleComments(post.permalink)}
-                  aria-label="Show comments"
-                >
-                  {/* <TiMessage className="icon-action" /> */}
-                </button>
-                {/* {shortenNumber(post.num_comments, 1)} */}
+                <span className="text-orange-600 font-bold text-sm">
+                  {` ${post.author}`}
+                </span>
               </span>
             </div>
+          </div>
+        </div>
+        <div className="flex justify-center items-center text-zinc-400">
+          <div className="mr-4">
+            <EllipsisVert />
+          </div>
+          <div className="w-16 flex flex-col justify-center items-center">
+            <ChevronUp />
+            <p className="text-zinc-700 font-bold">
+              {shortenNumber(post.ups, 1)}
+            </p>
+            <ChevronDown />
           </div>
         </div>
       </div>
