@@ -1,8 +1,8 @@
 import React from 'react';
-import { Post } from '../Post/Post';
+import { Post } from './Post';
 import { useSelector } from 'react-redux';
 
-export const Home = () => {
+export const Main = () => {
   const { posts } = useSelector((store) => store.reddit);
   return (
     <>

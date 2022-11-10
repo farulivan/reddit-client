@@ -5,8 +5,8 @@ import {
   ChevronUp,
   ChevronDown,
   Comments,
-} from '../../assets/icons';
-import { truncateString, shortenNumber } from '../../utils/helperFunctions';
+} from '../assets/icons';
+import { truncateString, shortenNumber } from '../utils/helperFunctions';
 import moment from 'moment/moment';
 
 export const Post = (props) => {

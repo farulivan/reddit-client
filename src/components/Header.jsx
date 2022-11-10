@@ -1,9 +1,14 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 export const Header = () => {
+  const { subredditsParam } = useParams();
+
   return (
     <div className="flex justify-between items-center mt-7 mx-14">
-      <span className="text-orange-600 font-bold text-lg">Popular</span>
+      <span className="text-orange-600 font-bold text-lg">
+        {subredditsParam || 'Home'}
+      </span>
       <form className="w-96">
         <label
           htmlFor="default-search"
