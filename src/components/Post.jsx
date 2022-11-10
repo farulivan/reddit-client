@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  NoImage,
+  RedditSmallIcon,
   EllipsisVert,
   ChevronUp,
   ChevronDown,
@@ -11,13 +11,22 @@ import moment from 'moment/moment';
 
 export const Post = (props) => {
   const post = props.post;
-  // console.log(post.)
+  console.log(post.post_hint);
+
+  const detectImage = (url) => {
+    if (url.includes('https://i.redd.it')) {
+      return <img src={url} alt="" className="object-cover" />;
+    } else {
+      return <RedditSmallIcon />;
+    }
+  };
+
   return (
     <article key={post.id} className="w-full flex">
       <div className="mb-10 w-full flex justify-between items-center">
         <div className="flex items-center">
-          <div className="w-28 h-16 overflow-hidden rounded-md">
-            <img src={post.url} alt="" className="object-cover" />
+          <div className="w-28 h-16 overflow-hidden rounded-md bg-zinc-100 flex justify-center items-center">
+            {detectImage(post.url)}
           </div>
           <div className="ml-4">
             <h3 className="font-bold text-zinc-700">

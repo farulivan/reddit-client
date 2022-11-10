@@ -14,7 +14,6 @@ export const Sidebar = () => {
     'Sports',
     'Technology',
     'NBA',
-    'EPL',
   ];
 
   const dispatch = useDispatch();
