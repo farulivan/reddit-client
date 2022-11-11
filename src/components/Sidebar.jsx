@@ -42,7 +42,7 @@ export const Sidebar = () => {
               <NavLink
                 key={index}
                 id={subreddit}
-                to={`/${subreddit}`}
+                to={`/${subreddit.toLowerCase()}`}
                 onClick={(e) =>
                   dispatch(
                     setSelectedSubreddit(`/r/${e.target.id.toLowerCase()}`)

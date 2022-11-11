@@ -3,7 +3,7 @@ import { Header } from './Header';
 import { Main } from './Main';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, setSelectedSubreddit } from '../features/Reddit/redditSlice';
+import { getPosts } from '../features/Reddit/redditSlice';
 
 export const Home = () => {
   const dispatch = useDispatch();

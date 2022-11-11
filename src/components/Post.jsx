@@ -11,7 +11,7 @@ import moment from 'moment/moment';
 
 export const Post = (props) => {
   const post = props.post;
-  console.log(post.post_hint);
+  // console.log(post.post_hint);
 
   const detectImage = (url) => {
     if (url.includes('https://i.redd.it')) {

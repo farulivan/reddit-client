@@ -1,15 +1,39 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  setSearchTerm,
+  getPostsBySearch,
+} from '../features/Reddit/redditSlice';
 
 export const Header = () => {
-  const { subredditsParam } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { param } = useParams();
+
+  const { searchTerm } = useSelector((store) => store.reddit);
+
+  const handleChange = (e) => {
+    dispatch(setSearchTerm(e.target.value));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getPostsBySearch(searchTerm));
+
+    if (searchTerm.trim()) {
+      navigate(`/search.json?q=${searchTerm}`);
+    } else {
+      navigate('/search');
+    }
+  };
 
   return (
     <div className="flex justify-between items-center mt-7 mx-14">
-      <span className="text-orange-600 font-bold text-lg">
-        {subredditsParam || 'Home'}
+      <span className="text-orange-600 font-bold text-lg capitalize">
+        {param ? (param.includes('search') ? 'Search' : param) : 'Home'}
       </span>
-      <form className="w-96">
+      <form className="w-96" onSubmit={handleSubmit}>
         <label
           htmlFor="default-search"
           className="mb-2 text-xs font-medium text-gray-900 sr-only"
@@ -39,12 +63,11 @@ export const Header = () => {
             id="default-search"
             className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-orange-500 focus:border-orange-500"
             placeholder="Search Reddit"
-            required=""
+            required
+            onChange={handleChange}
+            value={searchTerm}
           />
-          <button
-            type="submit"
-            className="text-white absolute right-2.5 bottom-2.5 bg-orange-600 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-2xl text-xs px-4 py-2"
-          >
+          <button className="text-white absolute right-2.5 bottom-2.5 bg-orange-600 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-2xl text-xs px-4 py-2">
             Search
           </button>
         </div>

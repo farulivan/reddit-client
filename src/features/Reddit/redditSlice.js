@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { mockup } from '../../mockup';
 import axios from 'axios';
 
 const initialState = {
@@ -16,6 +15,18 @@ export const getPosts = createAsyncThunk(
   async (subreddit) => {
     try {
       const resp = await axios(`${URL_ROOT}${subreddit}.json`);
+      return resp.data.data.children.map((post) => post.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const getPostsBySearch = createAsyncThunk(
+  'redditPosts/getPostsBySearch',
+  async (searchTerm) => {
+    try {
+      const resp = await axios(`${URL_ROOT}/search.json?q=${searchTerm}`);
       return resp.data.data.children.map((post) => post.data);
     } catch (error) {
       console.log(error);
@@ -47,6 +58,16 @@ const redditSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(getPosts.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getPostsBySearch.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPostsBySearch.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.posts = action.payload;
+      })
+      .addCase(getPostsBySearch.rejected, (state) => {
         state.isLoading = false;
       });
   },
