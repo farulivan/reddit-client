@@ -7,7 +7,7 @@ import { getPosts } from '../features/Reddit/redditSlice';
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { posts, isLoading, selectedSubreddit } = useSelector(
+  const { posts, isLoading, selectedSubreddit, error } = useSelector(
     (store) => store.reddit
   );
 
@@ -23,7 +23,7 @@ export const Home = () => {
       <div className="w-4/5 bg-zinc-100">
         <Header />
         <main className="m-10 p-7 bg-white rounded-lg z-10 shadow-xl">
-          <Main posts={posts} isLoading={isLoading} />
+          <Main posts={posts} isLoading={isLoading} error={error} />
         </main>
       </div>
     </div>

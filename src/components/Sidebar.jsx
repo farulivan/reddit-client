@@ -1,6 +1,9 @@
 import { useDispatch } from 'react-redux';
 import redditIcon from '../assets/redditIcon.svg';
-import { setSelectedSubreddit } from '../features/Reddit/redditSlice';
+import {
+  setSelectedSubreddit,
+  clearPosts,
+} from '../features/Reddit/redditSlice';
 import { NavLink, Link } from 'react-router-dom';
 
 export const Sidebar = () => {
@@ -18,8 +21,9 @@ export const Sidebar = () => {
 
   const dispatch = useDispatch();
 
-  const backHome = () => {
-    <Navigate to="/" />;
+  const handleSubredditClick = (e) => {
+    dispatch(clearPosts());
+    dispatch(setSelectedSubreddit(`/r/${e.target.id.toLowerCase()}`));
   };
 
   return (
@@ -43,11 +47,7 @@ export const Sidebar = () => {
                 key={index}
                 id={subreddit}
                 to={`/${subreddit.toLowerCase()}`}
-                onClick={(e) =>
-                  dispatch(
-                    setSelectedSubreddit(`/r/${e.target.id.toLowerCase()}`)
-                  )
-                }
+                onClick={handleSubredditClick}
                 className={({ isActive }) =>
                   [
                     'border-l-4 px-6 hover:text-zinc-700 cursor-pointer border-transparent',

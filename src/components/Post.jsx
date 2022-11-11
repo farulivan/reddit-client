@@ -9,10 +9,7 @@ import {
 import { truncateString, shortenNumber } from '../utils/helperFunctions';
 import moment from 'moment/moment';
 
-export const Post = (props) => {
-  const post = props.post;
-  // console.log(post.post_hint);
-
+export const Post = ({ post }) => {
   const detectImage = (url) => {
     if (url.includes('https://i.redd.it')) {
       return <img src={url} alt="" className="object-cover" />;
