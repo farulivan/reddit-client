@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import redditIcon from '../assets/redditIcon.svg';
+import { RedditIcon } from '../assets/icons';
 import {
   setSelectedSubreddit,
   clearPosts,
@@ -34,7 +34,7 @@ export const Sidebar = () => {
         to="/"
         onClick={(e) => dispatch(setSelectedSubreddit(`/r/popular`))}
       >
-        <img src={redditIcon} alt="Reddit Icon" className="w-10 mr-2" />
+        <RedditIcon alt="reddit logo" />
         <p className="text-xl font-bold">
           reddit<span className="text-orange-600">lite</span>
         </p>
