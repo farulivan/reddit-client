@@ -43,14 +43,16 @@ export const Main = ({ posts, isLoading, error }) => {
   }
   return (
     <>
-      {posts.map((post) => (
-        <Post
-          key={post.id}
-          post={post}
-          isLoading={isLoading}
-          // onToggleComments={onToggleComments(index)}
-        />
-      ))}
+      {posts
+        .filter((post) => !post.over_18)
+        .map((post) => (
+          <Post
+            key={post.id}
+            post={post}
+            isLoading={isLoading}
+            // onToggleComments={onToggleComments(index)}
+          />
+        ))}
     </>
   );
 };
